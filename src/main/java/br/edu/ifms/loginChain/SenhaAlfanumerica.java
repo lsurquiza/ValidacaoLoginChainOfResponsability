@@ -25,7 +25,7 @@ public class SenhaAlfanumerica implements Validador {
                 return this.proximo.validar(usuario);
         }
         else {
-            System.out.println("A senha deve conter caracteres alfanuméricos");
+            System.out.println("A senha deve conter apenas letras e números");
             return false;
         }
     }
