@@ -2,17 +2,13 @@ package br.edu.ifms.LoginChain;
 
 import br.edu.ifms.usuario.Usuario;
 
-public class LoginOitoChar implements Validador{
-	
-	private Validador proximo;	
-	
-	/*
-	 * Verifica se o login do usuario tem 8 caracteres!
-	 */
+public class LoginPrimeiraLetra implements Validador{
 
+	private Validador proximo;
+	
 	@Override
 	public boolean validar(Usuario usuario) {
-		if(usuario.login.length() >= 8 ) {
+		if(usuario.login.substring(0,1).matches("[a-zA-Z]")) {
 			if(this.proximo == null) {
 				return true;
 			}
@@ -21,19 +17,19 @@ public class LoginOitoChar implements Validador{
 			}
 		}
 		else {
-			System.out.println("O login deve ter pelo menos 8 caracteres");
+			System.out.println("O primeiro caractere do login deve ser uma letra");
 			return false;
 		}
-		
+
+	}
+
+	@Override
+	public void setProximo(Validador proximo) {
+		this.proximo = proximo;
 	}
 
 	public Validador getProximo() {
 		return proximo;
 	}
 
-	public void setProximo(Validador proximo) {
-		this.proximo = proximo;
-	}
-	
-	
 }
